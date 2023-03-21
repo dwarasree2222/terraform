@@ -8,7 +8,8 @@ resource "aws_vpc" "my-vpc" {
 }
 
 resource "aws_subnet" "subnet1" {
-  count             = 3
+  #count             = 3
+  count             = length(var.cidr-block-subnet1)
   cidr_block        = var.cidr-block-subnet1[count.index]
   availability_zone = "${var.region}${var.subnet-azs[count.index]}"
 
