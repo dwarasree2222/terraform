@@ -8,9 +8,12 @@ resource "aws_vpc" "my-vpc" {
 }
 
 resource "aws_subnet" "subnet1" {
-  cidr_block = var.cidr-block-subnet1
+  count             = 3
+  cidr_block        = var.cidr-block-subnet1[count.index]
+  availability_zone = "${var.region}${var.subnet-azs[count.index]}"
+
   tags = {
-    Name = "actual-subnet1"
+    Name = var.app-name[count.index]
   }
   vpc_id = aws_vpc.my-vpc.id #implicit dependency 
   depends_on = [
@@ -18,8 +21,10 @@ resource "aws_subnet" "subnet1" {
   ]
 
 }
-resource "aws_subnet" "subnet2" {
-  cidr_block = var.cidr-block-subnet2
+
+/*resource "aws_subnet" "subnet2" {
+  cidr_block        = var.cidr-block-subnet2
+  availability_zone = "${var.region}b"
   tags = {
     Name = "actual-subnet2"
   }
@@ -30,7 +35,8 @@ resource "aws_subnet" "subnet2" {
 
 }
 resource "aws_subnet" "subnet3" {
-  cidr_block = var.cidr-block-subnet3
+  cidr_block        = var.cidr-block-subnet3
+  availability_zone = "${var.region}c"
   tags = {
     Name = "actual-subnet3"
   }
@@ -39,4 +45,4 @@ resource "aws_subnet" "subnet3" {
     aws_vpc.my-vpc
   ]
 
-}
+}*/
