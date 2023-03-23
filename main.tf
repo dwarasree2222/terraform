@@ -1,5 +1,5 @@
 resource "aws_vpc" "my-vpc" {
-  cidr_block = "192.168.0.0/16"
+  cidr_block = var.vpc_cidr
   tags = {
     Name = "actual-vpc-name"
   }
@@ -8,13 +8,13 @@ resource "aws_vpc" "my-vpc" {
 }
 
 resource "aws_subnet" "subnet1" {
-  #count             = 3
-  count             = length(var.cidr-block-subnet1)
-  cidr_block        = var.cidr-block-subnet1[count.index]
-  availability_zone = "${var.region}${var.subnet-azs[count.index]}"
+  #count             = length(var.vpc-subnet-info.app-name)
+  count             = length(var.vpc-subnet-info.cidr-block-subnet1)
+  cidr_block        = cidrsubnet(var.vpc-subnet-info.vpc_cidr, 8, count.index)
+  availability_zone = "${var.region}${var.vpc-subnet-info.subnet-azs[count.index]}"
 
   tags = {
-    Name = var.app-name[count.index]
+    Name = var.vpc-subnet-info.app-name[count.index]
   }
   vpc_id = aws_vpc.my-vpc.id #implicit dependency 
   depends_on = [
