@@ -2,3 +2,7 @@
 *.terraform.lock.hcl
 *.terraform/
 *terraform.tfstate
+
+*locals.tf
+*terraform.tfstate.backup
+*test
