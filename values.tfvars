@@ -7,5 +7,6 @@ vpc-subnet-info = {
   public_subnets     = ["web1", "web2"]
   private_subnets    = ["db1", "db2", "app1", "app2"]
   db_subnets         = ["db1", "db2"]
+  web_ec2_subnet     = "web1"
 
 }

@@ -8,6 +8,7 @@ variable "vpc-subnet-info" {
     public_subnets     = list(string)
     private_subnets    = list(string)
     db_subnets         = list(string)
+    web_ec2_subnet     = string
 
 
   })
@@ -20,5 +21,6 @@ variable "vpc-subnet-info" {
     public_subnets     = []
     private_subnets    = ["db1", "db2", "app1", "app2"]
     db_subnets         = ["db1", "db2"]
+    web_ec2_subnet     = ""
   }
 }
