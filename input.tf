@@ -7,6 +7,7 @@ variable "vpc-subnet-info" {
     region             = string
     public_subnets     = list(string)
     private_subnets    = list(string)
+    db_subnets         = list(string)
 
 
   })
@@ -16,7 +17,8 @@ variable "vpc-subnet-info" {
     cidr-block-subnets = ["192.168.0.0/24", "192.168.1.0/24", "192.168.2.0/24", "192.168.3.0/24", "192.168.4.0/24", "192.168.5.0/24"]
     vpc_cidr           = "192.168.0.0/16"
     region             = "us-east-1"
-    public_subnets     = ["web1", "web2"]
+    public_subnets     = []
     private_subnets    = ["db1", "db2", "app1", "app2"]
+    db_subnets         = ["db1", "db2"]
   }
 }
