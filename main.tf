@@ -91,6 +91,9 @@ resource "aws_route_table_association" "publicassrttableref" {
   count          = length(data.aws_subnets.publicdataref.ids)
   route_table_id = aws_route_table.public.id
   subnet_id      = data.aws_subnets.publicdataref.ids[count.index]
+  depends_on = [
+    data.aws_subnets.publicdataref
+  ]
 
 
 
@@ -99,7 +102,9 @@ resource "aws_route_table_association" "privateassrttableref" {
   count          = length(data.aws_subnets.privatedataref.ids)
   route_table_id = aws_route_table.private.id
   subnet_id      = data.aws_subnets.privatedataref.ids[count.index]
-
+  depends_on = [
+    data.aws_subnets.privatedataref
+  ]
 
 
 }

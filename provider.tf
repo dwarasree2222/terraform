@@ -6,6 +6,12 @@ terraform {
       version = ">= 4.47.0"
     }
   }
+  backend "s3" {
+    bucket = "myawsbucketsdwara"
+    key    = "path/to/my/key"
+    region = "us-east-1"
+  }
+
 }
 
 
